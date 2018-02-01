@@ -34,7 +34,3 @@ volumes:
     postgres-data-volume:
     composer-cache-volume:
         external: true
-
-networks:
-    global_default:
-        external: true
