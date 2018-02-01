@@ -3,25 +3,25 @@ AppBundle\Entity\Image:
         createdAt: <dateTimeBetween('-100 days', 'now')>
         setFileFixture: ["<imageUrl($width = 800, $height = 600, $category = 'cats', $randomize = true)>", "test-cats-image-<current()>.jpeg"]
         album: "@album_1"
-        title: "dasdasd"
+        title: "Test"
 
-    image_{1..20}:
+    image_{6..26}:
         createdAt: <dateTimeBetween('-100 days', 'now')>
         setFileFixture: ["<imageUrl($width = 800, $height = 600, $category = 'city', $randomize = true)>", "test-city-image-<current()>.jpeg"]
         album: "@album_2"
-        title: "dasdasd"
-    image_{1..25}:
+        title: "Test"
+    image_{27..50}:
         createdAt: <dateTimeBetween('-100 days', 'now')>
         setFileFixture: ["<imageUrl($width = 800, $height = 600, $category = 'food', $randomize = true)>", "test-food-image-<current()>.jpeg"]
         album: "@album_3"
-        title: "dasdasd"
-    image_{1..30}:
+        title: "Test"
+    image_{51..75}:
         createdAt: <dateTimeBetween('-100 days', 'now')>
         setFileFixture: ["<imageUrl($width = 800, $height = 600, $category = 'technics', $randomize = true)>", "test-technics-image-<current()>.jpeg"]
         album: "@album_4"
-        title: "dasdasd"
-    image_{1..40}:
+        title: "Test"
+    image_{76..100}:
         createdAt: <dateTimeBetween('-100 days', 'now')>
         setFileFixture: ["<imageUrl($width = 800, $height = 600, $category = 'cats', $randomize = true)>", "test-cats-image-<current()>.jpeg"]
         album: "@album_5"
-        title: "dasdasd"
+        title: "Test"

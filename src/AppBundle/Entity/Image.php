@@ -46,7 +46,7 @@ class Image
      *
      * @Assert\NotBlank(groups={"new"})
      * @Assert\File()
-     * @Vich\UploadableField(mapping="images", fileNameProperty="name", originalName="originalName", mimeType="mimeType", size="size")
+     * @Vich\UploadableField(mapping="images", fileNameProperty="image.name", originalName="image.originalName", mimeType="image.mimeType", size="image.size")
      */
     protected $uploadedFile;
 
