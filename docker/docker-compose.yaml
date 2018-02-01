@@ -1,0 +1,40 @@
+version: '3'
+services:
+    testtask-web:
+        image: brouzie/php:7.1
+        container_name: testtask-web
+        hostname: testtask-web
+        depends_on:
+            - testtask-postgres
+        links:
+            - testtask-postgres
+        networks:
+            - default
+        volumes:
+            - composer-cache-volume:/home/dev/.composer/cache
+            - ./mount/var/log/apache2:/var/log/apache2
+            - ./mount/etc/apache2/sites-enabled:/etc/apache2/sites-enabled
+            - ./..:/var/www/html
+        environment:
+            PASSWORD: 112233
+            EXPOSE_HOSTS: |-
+                testtask.test
+
+    testtask-postgres:
+        image: postgres:9.6
+        container_name: testtask-postgres
+        volumes:
+            - postgres-data-volume:/var/lib/postgresql/data
+        environment:
+            POSTGRES_DB: testtask
+            POSTGRES_USER: testtask
+            POSTGRES_PASSWORD: testtask
+
+volumes:
+    postgres-data-volume:
+    composer-cache-volume:
+        external: true
+
+networks:
+    global_default:
+        external: true
