@@ -2,9 +2,15 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="albums")
+ */
 class Album
 {
     /**
@@ -28,10 +34,17 @@ class Album
      */
     private $createdAt;
 
+    /**
+     * @var Collection|Image[]
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="album")
+     */
+    private $images;
+
     public function __construct()
     {
         $this->title = '';
         $this->createdAt = new \DateTime();
+        $this->images = new ArrayCollection();
     }
 
     /**
@@ -56,6 +69,30 @@ class Album
     public function setTitle(string $title): void
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return Image[]|Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param Image $image
+     */
+    public function addImage(Image $image)
+    {
+        $this->images->add($image);
+    }
+
+    /**
+     * @param Image $image
+     */
+    public function removeImage(Image $image)
+    {
+        $this->images->removeElement($image);
     }
 
     /**

@@ -1,0 +1,27 @@
+AppBundle\Entity\Image:
+    image_{1..5}:
+        createdAt: <dateTimeBetween('-100 days', 'now')>
+        setFileFixture: ["<imageUrl($width = 800, $height = 600, $category = 'cats', $randomize = true)>", "test-cats-image-<current()>.jpeg"]
+        album: "@album_1"
+        title: "dasdasd"
+
+    image_{1..20}:
+        createdAt: <dateTimeBetween('-100 days', 'now')>
+        setFileFixture: ["<imageUrl($width = 800, $height = 600, $category = 'city', $randomize = true)>", "test-city-image-<current()>.jpeg"]
+        album: "@album_2"
+        title: "dasdasd"
+    image_{1..25}:
+        createdAt: <dateTimeBetween('-100 days', 'now')>
+        setFileFixture: ["<imageUrl($width = 800, $height = 600, $category = 'food', $randomize = true)>", "test-food-image-<current()>.jpeg"]
+        album: "@album_3"
+        title: "dasdasd"
+    image_{1..30}:
+        createdAt: <dateTimeBetween('-100 days', 'now')>
+        setFileFixture: ["<imageUrl($width = 800, $height = 600, $category = 'technics', $randomize = true)>", "test-technics-image-<current()>.jpeg"]
+        album: "@album_4"
+        title: "dasdasd"
+    image_{1..40}:
+        createdAt: <dateTimeBetween('-100 days', 'now')>
+        setFileFixture: ["<imageUrl($width = 800, $height = 600, $category = 'cats', $randomize = true)>", "test-cats-image-<current()>.jpeg"]
+        album: "@album_5"
+        title: "dasdasd"

@@ -6,8 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Entity\File as EmbeddableFile;
 
+use Vich\UploaderBundle\Entity\File as EmbeddableFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="images")
+ * @Vich\Uploadable
+ */
 class Image
 {
     /**
@@ -42,6 +49,13 @@ class Image
      * @Vich\UploadableField(mapping="images", fileNameProperty="name", originalName="originalName", mimeType="mimeType", size="size")
      */
     protected $uploadedFile;
+
+    /**
+     * @var Album
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Album")
+     * @ORM\JoinColumn(name="album_id", referencedColumnName="id", onDelete="CASCADE", nullable=false)
+     */
+    private $album;
 
     /**
      * @var \DateTime
@@ -106,6 +120,22 @@ class Image
     }
 
     /**
+     * @return Album
+     */
+    public function getAlbum(): Album
+    {
+        return $this->album;
+    }
+
+    /**
+     * @param Album $album
+     */
+    public function setAlbum(Album $album): void
+    {
+        $this->album = $album;
+    }
+
+    /**
      * @return \DateTime
      */
     public function getUpdatedAt(): \DateTime
@@ -156,4 +186,10 @@ class Image
         }
     }
 
+    public function setFileFixture($filePath, $originalName)
+    {
+        $tmpFilePath = tempnam(sys_get_temp_dir(), 'image-');
+        copy($filePath, $tmpFilePath);
+        $this->setUploadedFile(new UploadedFile($tmpFilePath, $originalName, null, null, null, true));
+    }
 }
